@@ -8,13 +8,17 @@ class RoomsController < ApplicationController
     end
   
     def new 
+        @room = Room.new
     end
     
     def create
         @room = Room.new(room_params)
  
-        @room.save
-        redirect_to @room
+        if @room.save
+            redirect_to @room
+        else
+            render 'new'
+        end
     end
  
     private
